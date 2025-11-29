@@ -1,11 +1,30 @@
+load(
+    "@rules_xcodeproj//xcodeproj:defs.bzl",
+    "top_level_target",
+    "xcodeproj",
+)
+
 package(default_visibility = ["//visibility:public"])
 
+# Xcode
+
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "FinTracker",
+    tags = ["manual"],
+    top_level_targets = [
+        top_level_target(":ios", target_environments = ["simulator"]),
+        top_level_target(":macos", target_environments = ["device"]),
+    ],
+)
+
+# Shortcut for the apps launch on
+# bazel
 alias(
     name = "ios",
     actual = "//App:fintracker_iOS",
 )
 
-# Shortcut for the iOS app
 alias(
     name = "macos",
     actual = "//App:fintracker_macOS",

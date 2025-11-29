@@ -12,6 +12,11 @@ swift_library(
     srcs = glob([
         "Sources/**/*.swift"
     ]),
+    defines = [
+        # Example: Enable a feature flag via a Swift compiler conditional compilation flag
+        "-DNonisolatedNonsendingByDefault",
+        "-DDEFAULT_ISOLATION=MainActor"
+    ],
 )
 
 bundle_id = "se.buildswift.FinTracker"
