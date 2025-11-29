@@ -1,0 +1,40 @@
+load("@rules_swift//swift:swift.bzl", "swift_library")
+load("@rules_apple//apple:ios.bzl", "ios_application")
+load("@rules_apple//apple:macos.bzl", "macos_application")
+
+package(default_visibility = ["//visibility:public"])
+
+swift_library(
+    name = "App",
+    deps = [
+        "//Networth:Networth",
+    ],
+    srcs = glob([
+        "Sources/**/*.swift"
+    ]),
+)
+
+bundle_id = "se.buildswift.FinTracker"
+bundle_name = "FinTracker"
+minimum_deployment_os_version = "26.1"
+
+ios_application(
+    name = "fintracker_iOS",
+    bundle_id = bundle_id,
+    bundle_name = bundle_name,
+    families = ["iphone"],
+    infoplists = ["Resources/Info.plist"],
+    minimum_os_version = "26.1",
+    minimum_deployment_os_version = minimum_deployment_os_version,
+    deps = [":App"],
+)
+
+macos_application(
+    name = "fintracker_macOS",
+    bundle_id = bundle_id,
+    bundle_name = bundle_name,
+    infoplists = ["Resources/Info.plist"],
+    minimum_os_version = "26.1",
+    minimum_deployment_os_version = minimum_deployment_os_version,
+    deps = [":App"],
+)

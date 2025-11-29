@@ -1,0 +1,5 @@
+# module(name = "fintracker", version = "")
+
+bazel_dep(name = "apple_support", version = "1.24.5")
+bazel_dep(name = "rules_apple", version = "4.3.2")
+bazel_dep(name = "rules_swift", version = "3.3.0")

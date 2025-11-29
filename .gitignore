@@ -1,0 +1,7 @@
+**/xcuserdata
+MODULE.bazel.lock
+
+bazel-bin
+bazel-FinTracker
+bazel-out
+bazel-testlogs

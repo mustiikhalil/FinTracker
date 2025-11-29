@@ -1,0 +1,12 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "ios",
+    actual = "//App:fintracker_iOS",
+)
+
+# Shortcut for the iOS app
+alias(
+    name = "macos",
+    actual = "//App:fintracker_macOS",
+)
