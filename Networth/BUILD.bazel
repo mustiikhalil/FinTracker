@@ -2,6 +2,7 @@ load("@rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "Networth",
+    deps = ["@swiftpkg_flatbuffers//:FlexBuffers"],
     srcs = glob([
         "Sources/*.swift"
     ]),

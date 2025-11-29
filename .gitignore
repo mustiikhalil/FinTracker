@@ -1,5 +1,6 @@
 **/xcuserdata
 MODULE.bazel.lock
+.build
 
 bazel-bin
 bazel-FinTracker

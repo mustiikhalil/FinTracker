@@ -1,5 +1,25 @@
-# module(name = "fintracker", version = "")
+module(
+    name = "fintracker",
+    version = "",
+)
 
 bazel_dep(name = "apple_support", version = "1.24.5")
 bazel_dep(name = "rules_apple", version = "4.3.2")
 bazel_dep(name = "rules_swift", version = "3.3.0")
+bazel_dep(name = "rules_swift_package_manager", version = "1.10.0")
+
+swift_deps = use_extension(
+    "@rules_swift_package_manager//:extensions.bzl",
+    "swift_deps",
+)
+swift_deps.from_package(
+    declare_swift_deps_info = True,
+    resolved = "//:Package.resolved",
+    swift = "//:Package.swift",
+)
+use_repo(
+    swift_deps,
+    "swift_deps_info",
+    "swift_package",
+    "swiftpkg_flatbuffers",
+)
