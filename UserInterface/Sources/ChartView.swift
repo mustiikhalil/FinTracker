@@ -4,15 +4,6 @@ import Charts
 import SwiftUI
 
 
-public nonisolated struct MonthlyData: ChartData {
-  public let id: UUID = UUID()
-  public let startDate: Date
-  public let endDate: Date
-  public let totalSum: Decimal
-  public let pension: Decimal
-  public let endOfMonthLeftOver: Decimal
-}
-
 public nonisolated protocol ChartData: Identifiable, Hashable, Sendable {
   var id: UUID { get }
   var startDate: Date { get }
@@ -68,7 +59,6 @@ public struct MonthlyChartView<T>: View where T: ChartData {
     #if os(macOS)
     InternalChartView(state: state)
       .frame(minWidth: 350, minHeight: 250)
-      .padding(.top, 50)
       .padding()
     #else
     InternalChartView(state: state)
@@ -150,39 +140,6 @@ fileprivate struct InternalChartView<T>: View where T: ChartData {
       }
     }
     .chartXSelection(value: $selectedDate)
+    .padding(.top, 50)
   }
-}
-
-public func getData() -> [MonthlyData] {
-  let months = 20 * 12
-  var array = [MonthlyData]()
-  var firstDate = Calendar.current.date(
-    byAdding: .month,
-    value: -months,
-    to: Date())!
-  for i in 0..<months {
-    let month = Double(i + 1) / 12
-    let endDate = Calendar.current.date(
-      byAdding: .month,
-      value: 1,
-      to: firstDate)!
-    let rand = Double.random(in: 7...10)
-    let sum = Decimal(1_000_000 * month / rand)
-    array.append(
-      MonthlyData(
-        startDate: firstDate,
-        endDate: endDate,
-        totalSum: sum,
-        pension: Decimal(47_000 / month),
-        endOfMonthLeftOver: 53_000))
-    firstDate = endDate
-  }
-  return array
-}
-
-#Preview {
-  MonthlyChartView(
-    state: MonthlyChartState(
-      calendar: Calendar.current,
-      entries: getData()))
 }

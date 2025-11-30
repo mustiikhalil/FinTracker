@@ -8,15 +8,12 @@ struct ContentView: View {
   @Environment(\.calendar) private var calendar
 
   var body: some View {
-    VStack {
-      MonthlyChartView(
-        state: MonthlyChartState(
-          calendar: calendar,
-          entries: getData()))
-
-      NetworthTabView()
+    TabView {
+      Tab("Networth", systemImage: Images.chartUpTrend) {
+        NetworthTabView()
+      }
     }
-    .padding()
+    .tabViewStyle(.sidebarAdaptable)
   }
 }
 
