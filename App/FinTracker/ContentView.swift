@@ -2,14 +2,17 @@
 
 import Networth
 import SwiftUI
+import UserInterface
 
 struct ContentView: View {
+  @Environment(\.calendar) private var calendar
+
   var body: some View {
     VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundStyle(.tint)
-      Text("Hello, world!")
+      MonthlyChartView(
+        state: MonthlyChartState(
+          calendar: calendar,
+          entries: getData()))
 
       NetworthTabView()
     }
