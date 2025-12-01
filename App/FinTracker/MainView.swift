@@ -4,9 +4,7 @@ import Networth
 import SwiftUI
 import UserInterface
 
-struct ContentView: View {
-  @Environment(\.calendar) private var calendar
-
+struct MainView: View {
   var body: some View {
     TabView {
       Tab("Networth", systemImage: Images.chartUpTrend) {
@@ -18,5 +16,5 @@ struct ContentView: View {
 }
 
 #Preview {
-  ContentView()
+  MainView()
 }

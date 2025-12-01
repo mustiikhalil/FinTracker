@@ -6,7 +6,12 @@ import SwiftUI
 struct FinTrackerApp: App {
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      #if os(macOS)
+      MainView()
+        .containerBackground(.black, for: .window)
+      #else
+      MainView()
+      #endif
     }
   }
 }

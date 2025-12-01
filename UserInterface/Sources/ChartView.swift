@@ -84,7 +84,7 @@ fileprivate struct InternalChartView<T>: View where T: ChartData {
     Chart {
       ForEach(state.entries) { entry in
         LineMark(
-          x: .value("Month", entry.endDate, unit: .month),
+          x: .value("Month", entry.startDate, unit: .month),
           y: .value("amount", entry.totalSum))
           .foregroundStyle(.purple)
       }
@@ -92,7 +92,7 @@ fileprivate struct InternalChartView<T>: View where T: ChartData {
 
       if let selectedData {
         RuleMark(
-          x: .value("Selected", selectedData.endDate, unit: .month))
+          x: .value("Selected", selectedData.startDate, unit: .month))
           .foregroundStyle(Color.gray.opacity(0.12))
           .annotation(
             position: .top,
@@ -103,7 +103,7 @@ fileprivate struct InternalChartView<T>: View where T: ChartData {
         {
           VStack {
             Text(
-              selectedData.endDate
+              selectedData.startDate
                 .formatted(.dateTime.month(.abbreviated)))
               .font(.caption)
             Text(selectedData.totalSum.formatted(.currency(code: "SEK")))
