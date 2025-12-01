@@ -12,10 +12,18 @@ swift_library(
     srcs = glob([
         "Sources/**/*.swift"
     ]),
-    defines = [
-        # Example: Enable a feature flag via a Swift compiler conditional compilation flag
-        "-DNonisolatedNonsendingByDefault",
-        "-DDEFAULT_ISOLATION=MainActor"
+    copts = [
+            # Sets the Swift Language Version (SWIFT_VERSION = 6.0)
+            "-swift-version", "6",
+
+            # Enables Concise Concurrency (SWIFT_APPROACHABLE_CONCURRENCY = YES)
+            "-Xfrontend", "-enable-upcoming-feature", "-Xfrontend", "ConciseMagicFile",
+
+            # Sets Strict Concurrency Checking (SWIFT_STRICT_CONCURRENCY = complete)
+            "-Xfrontend", "-strict-concurrency=complete",
+
+            # Sets Default Actor Isolation (SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor)
+            "-Xfrontend", "-default-actor-isolation=nonisolated",
     ],
 )
 
