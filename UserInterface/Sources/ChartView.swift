@@ -96,10 +96,18 @@ private struct InternalChartView<T>: View where T: ChartData {
     Chart {
       ForEach(state.entries) { entry in
         LineMark(
-          x: .value("Month", entry.month, unit: .month),
-          y: .value("amount", entry.sum)
+          x: .value("month", entry.month, unit: .month),
+          y: .value("amount", entry.sum),
+          series: .value("series", "Total sum")
         )
-        .foregroundStyle(.purple)
+        .foregroundStyle(by: .value("sumType", "Total sum"))
+
+        LineMark(
+          x: .value("month", entry.month, unit: .month),
+          y: .value("amount", entry.savings),
+          series: .value("series", "Savings")
+        )
+        .foregroundStyle(by: .value("sumType", "Savings"))
       }
       .interpolationMethod(.catmullRom)
 
@@ -156,6 +164,11 @@ private struct InternalChartView<T>: View where T: ChartData {
       }
     }
     .chartXSelection(value: $selectedDate)
+    .chartLegend(.visible)
+    .chartLegend(position: .bottom)
+    .chartForegroundStyleScale([
+      "Total sum": .purple, "Savings": .yellow,
+    ])
     .padding(.top, 50)
   }
 }
