@@ -1,6 +1,7 @@
 // Copyright Gwen aka Mustii for BuildSwift
 
 import Testing
+
 @testable import Core
 
 struct CoreTests {

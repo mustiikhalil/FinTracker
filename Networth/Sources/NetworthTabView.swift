@@ -10,7 +10,7 @@ public struct NetworthTabView: View {
       VStack {
         List {
           Section {
-            NetworkChartView()
+            NetworthChartView()
           }
           .setupMarginLessSection()
 
@@ -25,14 +25,14 @@ public struct NetworthTabView: View {
   }
 }
 
-private extension View {
-  func setupMarginLessSection() -> some View {
+extension View {
+  fileprivate func setupMarginLessSection() -> some View {
     #if os(macOS)
-    self
+      self
     #else
-    listSectionMargins(.all, 0)
-      .listSectionSeparator(.hidden)
-      .listRowBackground(Color.black)
+      listSectionMargins(.all, 0)
+        .listSectionSeparator(.hidden)
+        .listRowBackground(Color.black)
     #endif
   }
 }

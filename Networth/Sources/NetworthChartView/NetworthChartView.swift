@@ -3,12 +3,13 @@
 import SwiftUI
 import UserInterface
 
-struct NetworkChartView: View {
-  @State private var viewModel: NetworkChartViewModel
+struct NetworthChartView: View {
+
+  @State private var viewModel: NetworthChartViewModel
   @Environment(\.calendar) private var calendar
 
   init() {
-    viewModel = NetworkChartViewModel()
+    viewModel = NetworthChartViewModel()
   }
 
   var body: some View {
@@ -45,5 +46,5 @@ struct PickerView: View {
 }
 
 #Preview {
-  NetworkChartView()
+  NetworthChartView()
 }
